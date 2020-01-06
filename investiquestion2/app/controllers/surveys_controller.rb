@@ -5,7 +5,7 @@ class SurveysController < ApplicationController
 
     def index
         @surveys = Survey.all
-        render json: @surveys
+        render json: @surveys, include:[:questions] 
     end
 
     def show
@@ -15,7 +15,8 @@ class SurveysController < ApplicationController
     def create
         @survey = Survey.new(
             title: params[:title],
-            descripton: params[:descripton],
+            description: params[:description],
+            user_id: 1
         )
         if @survey.save
             render json: @survey
@@ -49,6 +50,6 @@ class SurveysController < ApplicationController
     end
 
     def survey_params
-        params.permit(:title, :descripton)
+        params.permit(:title, :description, :user_id)
     end
 end

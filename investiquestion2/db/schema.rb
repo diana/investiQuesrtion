@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(version: 2020_01_02_014449) do
 
   create_table "questions", force: :cascade do |t|
     t.bigint "survey_id"
+    t.string "question"
+    t.string "questionType"
+    t.text "choices", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_id"], name: "index_questions_on_survey_id"
